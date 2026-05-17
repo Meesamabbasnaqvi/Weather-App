@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Now</title>
+  <meta name="description"
+    content="Check the weather anywhere in the world with Weather Now - real-time forecasts, hourly and daily data.">
+  <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="6" fill="#FF8C00" />
+          <g stroke="#FF8C00" stroke-width="2" stroke-linecap="round">
+            <line x1="14" y1="2" x2="14" y2="5" />
+            <line x1="14" y1="23" x2="14" y2="26" />
+            <line x1="2" y1="14" x2="5" y2="14" />
+            <line x1="23" y1="14" x2="26" y2="14" />
+            <line x1="5.5" y1="5.5" x2="7.7" y2="7.7" />
+            <line x1="20.3" y1="20.3" x2="22.5" y2="22.5" />
+            <line x1="22.5" y1="5.5" x2="20.3" y2="7.7" />
+            <line x1="7.7" y1="20.3" x2="5.5" y2="22.5" />
+          </g>
+        </svg>
+        <span>Weather Now</span>
+      </div>
+
+      <div class="units-wrapper">
+        <button class="units-btn" id="units-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="7" cy="7" r="2" fill="currentColor" />
+            <line x1="7" y1="1" x2="7" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="7" y1="11" x2="7" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="1" y1="7" x2="3" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="11" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          Units
+          <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="units-dropdown hidden" id="units-dropdown">
+          <div class="unit-section">
+            <p class="unit-section-label">Temperature</p>
+            <div class="unit-toggle" id="temp-toggle">
+              <button class="unit-pill active" data-type="temp" data-val="celsius">°C</button>
+              <button class="unit-pill" data-type="temp" data-val="fahrenheit">°F</button>
+            </div>
+          </div>
+          <div class="unit-section">
+            <p class="unit-section-label">Wind Speed</p>
+            <div class="unit-toggle" id="wind-toggle">
+              <button class="unit-pill active" data-type="wind" data-val="kmh">km/h</button>
+              <button class="unit-pill" data-type="wind" data-val="mph">mph</button>
+            </div>
+          </div>
+          <div class="unit-section">
+            <p class="unit-section-label">Precipitation</p>
+            <div class="unit-toggle" id="precip-toggle">
+              <button class="unit-pill active" data-type="precip" data-val="mm">mm</button>
+              <button class="unit-pill" data-type="precip" data-val="inch">in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Title -->
+    <h1 class="hero-title">How's the sky looking today?</h1>
+
+    <!-- Search -->
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="#9399b2" stroke-width="1.5" />
+          <line x1="12.5" y1="12.5" x2="16" y2="16" stroke="#9399b2" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+        <input type="text" id="search-input" class="search-input" placeholder="Search for a place..."
+          autocomplete="off">
+        <button class="search-btn" id="search-btn">Search</button>
+      </div>
+      <div class="autocomplete-list hidden" id="autocomplete-list"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-grid">
+
+      <!-- Left Column -->
+      <div class="left-col">
+
+        <!-- Current Weather Card -->
+        <div class="current-card" id="current-card">
+          <div class="card-dots">
+            <span class="dot d1"></span>
+            <span class="dot d2"></span>
+            <span class="dot d3"></span>
+          </div>
+          <div class="card-left">
+            <h2 class="card-city" id="card-city">--</h2>
+            <p class="card-date" id="card-date">--</p>
+            <p class="card-desc" id="card-desc"></p>
+          </div>
+          <div class="card-center">
+            <img class="card-icon" id="card-icon" src="assets/images/icon-sunny.webp" alt="Weather">
+          </div>
+          <div class="card-right">
+            <span class="card-temp" id="card-temp">--°</span>
+          </div>
+          <div class="card-loading hidden" id="card-loading">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <p class="stat-label">Feels Like</p>
+            <p class="stat-value" id="stat-feels">--°</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Humidity</p>
+            <p class="stat-value" id="stat-humidity">--%</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Wind</p>
+            <p class="stat-value" id="stat-wind">--</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Precipitation</p>
+            <p class="stat-value" id="stat-precip">--</p>
+          </div>
+        </div>
+
+        <!-- Daily Forecast -->
+        <div class="daily-section">
+          <h3 class="section-title">Daily forecast</h3>
+          <div class="daily-grid" id="daily-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Hourly -->
+      <div class="right-col">
+        <div class="hourly-header">
+          <h3 class="section-title">Hourly forecast</h3>
+          <div class="day-select-wrapper">
+            <select class="day-select" id="day-select">
+              <option value="0">Today</option>
+            </select>
+            <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="hourly-list" id="hourly-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Attribution -->
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Built with <a href="" target="_blank">Meesam</a>.
+    </p>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
