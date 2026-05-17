@@ -1,24 +1,32 @@
-## 🎯 Challenge
+# 🌤️ Weather App
 
-This project is part of the Frontend Mentor challenge:
-- Build a weather app as close as possible to the provided design
-- Implement responsive layout and interactive features
-- Use real API data for weather information
+A responsive Weather Application built using **HTML, CSS, and JavaScript**.  
+This project is part of a Frontend Mentor challenge and uses the **Open-Meteo API** to fetch real-time weather data.
 
 ---
 
-## 🚀 Deployment
+## 📸 Preview
 
-You can deploy this project using:
-- GitHub Pages
-- Netlify
-- Vercel
+<p align="center">
+  <img src="https://github.com/Meesamabbasnaqvi/Weather-App/blob/main/preview.jpg?raw=true" alt="Weather App Preview" width="800"/>
+</p>
 
 ---
 
-## ✨ Acknowledgements
+## 🚀 Features
 
-- Frontend Mentor for the challenge design
-- Open-Meteo for free weather API
+- 🔍 Search weather by city or location  
+- 📍 Current location display  
+- 🌡️ Real-time temperature and weather conditions  
+- 🤒 Feels-like temperature  
+- 💧 Humidity level  
+- 🌬️ Wind speed  
+- 🌧️ Precipitation details  
+- 📅 7-day weather forecast  
+- ⏱️ Hourly weather forecast  
+- 📆 Switch between different days  
+- 🔁 Metric / Imperial unit toggle  
+- 📱 Fully responsive design  
+- ✨ Interactive hover and focus effects  
 
 ---
